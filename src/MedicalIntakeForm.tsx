@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Upload, CheckCircle2, AlertCircle, ArrowLeft, Loader2 } from "lucide-react";
 import { createClient } from "@supabase/supabase-js";
+import { useNavigate } from 'react-router-dom';
 
 const supabase = createClient("https://ezgihiuglhbzrarydqku.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6Z2loaXVnbGhienJhcnlkcWt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAxNjUyNjcsImV4cCI6MjA1NTc0MTI2N30.DedW0zXH7KOYx_KrAmd20NOyKcFUcMfP_HsK_5VbncU");
 
@@ -14,6 +15,7 @@ interface IFormData {
 }
 
 const MedicalIntakeForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<IFormData>({
     name: "",
     age: "",
@@ -105,7 +107,7 @@ const MedicalIntakeForm = () => {
               <h2 className="text-2xl font-semibold text-gray-900">Thank you for your submission!</h2>
               <p className="text-gray-600">We have received your information and will process it shortly.</p>
               <button
-                onClick={() => setSubmitted(false)}
+                onClick={() => navigate('/form')}
                 className="mt-4 px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
               >
                 Submit Another Form
@@ -122,7 +124,7 @@ const MedicalIntakeForm = () => {
       <nav className="bg-white shadow-sm p-4 rounded-lg flex items-center mb-6">
         <button 
           className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-          onClick={() => window.location.href = "/"}
+          onClick={() => navigate('/')}
         >
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
