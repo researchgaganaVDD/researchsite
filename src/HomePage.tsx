@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Mail, Home, Info } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
 
 const HomePage = () => {
   const navItems = [
@@ -7,6 +9,8 @@ const HomePage = () => {
     { id: 'about', label: 'About', icon: Info },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];
+
+  const navigate = useNavigate();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -67,13 +71,13 @@ const HomePage = () => {
         Non-invasive screening using facial, nail, and tongue analysis—powered by AI.
       </p>
       <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-lg font-medium shadow-lg"
-        onClick={() => window.location.href = '/form'}
-      >
-        Submit Your Data
-      </motion.button>
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-lg font-medium shadow-lg"
+      onClick={() => navigate('/form')} // ✅ Uses React Router
+    >
+      Submit Your Data
+    </motion.button>
     </motion.div>
   </div>
   <motion.div
